@@ -1,2 +1,14 @@
-      <div id="buildQueue" class="container-fluid pane-frame track-mouse expanded"><div class="row"><div class="col-xs-24 pane-header"><a href="http://localhost:8080/toggleCollapse?paneId=buildQueue" title="collapse" class="collapse"><img src="master_design_files/collapse.png" alt="collapse" style="width: 16px; height: 16px; " class="icon-collapse icon-sm"></a>Build Queue</div></div><div class="row pane-content"><table class="pane "><tbody><tr><td class="pane" colspan="2">No builds in the queue.</td></tr></tbody></table></div></div><script defer="defer">refreshPart('buildQueue',"/view/kekekeke/ajaxBuildQueue");</script><div id="executors" class="container-fluid pane-frame track-mouse expanded"><div class="row"><div class="col-xs-24 pane-header"><a href="http://localhost:8080/toggleCollapse?paneId=executors" title="collapse" class="collapse"><img src="master_design_files/collapse.png" alt="collapse" style="width: 16px; height: 16px; " class="icon-collapse icon-sm"></a><a href="http://localhost:8080/computer/">Build Executor Status</a></div></div><div class="row pane-content"><table class="pane "><colgroup><col width="30"><col width="200*"><col width="24"></colgroup><tbody><tr><th class="pane" colspan="3"><a href="http://localhost:8080/computer/%28master%29/" class="model-link inside"><img src="master_design_files/computer.png" style="width: 16px; height: 16px; " class="icon-computer icon-sm">&nbsp;master</a></th></tr><tr><td class="pane" style="vertical-align: top" align="right">1</td><td class="pane">Idle</td><td class="pane"></td><td class="pane"></td></tr><tr><td class="pane" style="vertical-align: top" align="right">2</td><td class="pane">Idle</td><td class="pane"></td><td class="pane"></td></tr><tr><th class="pane" colspan="3"><a href="http://localhost:8080/computer/slaveek/" class="model-link inside"><img src="master_design_files/computer-x.png" style="width: 16px; height: 16px; " class="icon-computer-x icon-sm">&nbsp;slaveek</a>&nbsp; (offline)</th></tr></tbody></table></div></div><script defer="defer">refreshPart('executors',"/view/kekekeke/ajaxExecutors");</script></div>
+<div id="buildQueue" class="container-fluid pane-frame track-mouse expanded">
+    <div class="row">
+        <div class="col-xs-24 pane-header"><a href="http://localhost:8080/toggleCollapse?paneId=buildQueue" title="collapse" class="collapse"><img src="master_design_files/collapse.png" alt="collapse" style="width: 16px; height: 16px; " class="icon-collapse icon-sm"></a>Build Queue</div></div>
+    <div class="row pane-content"><table class="pane "><tbody>
+
+    <!-- Queue -->
+            <tr><td class="pane" colspan="2">No builds in the queue.</td></tr>
+    <!-- END Queue -->
+
+</tbody></table></div></div>
+
+<script defer="defer">refreshPart('buildQueue',"/view/kekekeke/ajaxBuildQueue");</script>
+
 
