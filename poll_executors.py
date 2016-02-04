@@ -63,7 +63,9 @@ def build_executors_info():
             ###if master then empty
             jobs_on_executor = []
             if computer['displayName'] in jobs_on_executors:
-                jobs_on_executor.append(jobs_on_executors[computer['displayName']])
+                jobs_on_executor = jobs_on_executors[computer['displayName']]
+            elif '' is computer['displayName']:
+                jobs_on_executors = jobs_on_executors['master']
             result[computer['displayName']]= {'executors':computer['numExecutors'],'offline': computer['offline'], 'jobs_active':jobs_on_executor }
     return result
 

@@ -3,12 +3,59 @@
         <div class="col-xs-24 pane-header"><a href="http://localhost:8080/toggleCollapse?paneId=executors" title="collapse" class="collapse"><img src="master_design_files/collapse.png" alt="collapse" style="width: 16px; height: 16px; " class="icon-collapse icon-sm"></a><a href="http://localhost:8080/computer/">Build Executor Status</a></div></div>
     <div class="row pane-content"><table class="pane "><colgroup><col width="30"><col width="200*"><col width="24"></colgroup>
             <tbody>
-            <tr><th class="pane" colspan="3"><a href="http://localhost:8080/computer/%28master%29/" class="model-link inside"><img src="master_design_files/computer.png" style="width: 16px; height: 16px; " class="icon-computer icon-sm">&nbsp;master</a></th></tr>
+
+
+<!--            <tr><th class="pane" colspan="3"><a href="http://localhost:8080/computer/%28master%29/" class="model-link inside"><img src="master_design_files/computer.png" style="width: 16px; height: 16px; " class="icon-computer icon-sm">&nbsp;master</a></th></tr>
             <tr><td class="pane" style="vertical-align: top" align="right">1</td>
                 <td class="pane">Idle</td><td class="pane"></td>
                 <td class="pane"></td></tr>
             <tr><td class="pane" style="vertical-align: top" align="right">2</td><td class="pane">Idle</td><td class="pane"></td><td class="pane"></td></tr>
-            <tr><th class="pane" colspan="3"><a href="http://localhost:8080/computer/slaveek/" class="model-link inside"><img src="master_design_files/computer-x.png" style="width: 16px; height: 16px; " class="icon-computer-x icon-sm">&nbsp;slaveek</a>&nbsp; (offline)</th></tr>
+-->
+
+
+<!--
+{'master': {'executors': 2, 'jobs_active': [], 'offline': False},
+ 'slaveek': {'executors': 4,
+             'jobs_active': [{'name': {'color': 'aborted_anime',
+                                        'name': 'tete',
+                                        'url': 'http://localhost:8080/job/tete/'},
+                               'number': '19'},
+                              {'name': {'color': 'aborted_anime',
+                                        'name': 'tete',
+                                        'url': 'http://localhost:8080/job/tete/'},
+                               'number': '17'},
+                              {'name': {'color': 'aborted_anime',
+                                        'name': 'tete',
+                                        'url': 'http://localhost:8080/job/tete/'},
+                               'number': '16'},
+                              {'name': {'color': 'aborted_anime',
+                                        'name': 'tete',
+                                        'url': 'http://localhost:8080/job/tete/'},
+                               'number': '15'}],
+             'offline': False}}
+-->
+{% for slave in executors %}
+<tr><th class="pane" colspan="3"><a href="http://localhost:8080/computer/%28master%29/" class="model-link inside"><img src="master_design_files/computer.png" style="width: 16px; height: 16px; " class="icon-computer icon-sm">{{ slave }}</a></th></tr>
+ {% for job in executors[slave]['jobs_active'] %}
+
+  <tr><td class="pane" style="vertical-align: top" align="right">X</td><td class="pane"><div style="white-space: normal"><a href="http://localhost:8080/job/{{ job['name']['name'] }}/">{{ job['name']['name'] }}</a>
+              <table title="Started {{ job['name']['time']['started'] }} ago&lt;br&gt; Estimated remaining time: {{ job['name']['time']['remaining'] }}" 
+                  tooltip="Started {{ job['name']['time']['started'] }} ago&lt;br&gt; Estimated remaining time: {{ job['name']['time']['remaining'] }}" style="cursor:pointer" href="/job/{{ job['name']['name'] }}/{{ job['name']['number'] }}/console" class="progress-bar ">
+                  <tbody><tr><td style="width:81%;" class="progress-bar-done"></td>
+                      <td style="width:19%" class="progress-bar-left"></td>
+      </tr></tbody></table></div></td>
+      <td class="pane"><a href="{{ job['name']['url'] }}/{{ job['name']['number'] }}/" class="model-link inside"><wbr>#{{ job['number'] }}</a></td>
+          <td class="pane" valign="middle" align="center"><a onclick="new Ajax.Request(this.href); return false" href="http://localhost:8080/job/{{ job['name']['url'] }}/{{ job['name']['number'] }}/stop" class="stop-button-link"><img src="master_design_files/stop.png" style="width: 16px; height: 16px; " class="icon-stop icon-sm"></a></td></tr>
+
+ {% endfor %}
+ {% if 'jobs_active' in executors[slave] %}
+ {% if (executors[slave]['executors'] - executors[slave]['jobs_active']|length) > 0 %}  
+            <tr><td class="pane" style="vertical-align: top" align="right">X</td><td class="pane">Idle</td><td class="pane"></td><td class="pane"></td></tr>
+            {% endif %}
+            {% endif %}
+{% endfor %}
+
+<!--            <tr><th class="pane" colspan="3"><a href="http://localhost:8080/computer/slaveek/" class="model-link inside"><img src="master_design_files/computer-x.png" style="width: 16px; height: 16px; " class="icon-computer-x icon-sm">&nbsp;slaveek</a>&nbsp; (offline)</th></tr> -->
         </tbody></table>
 
 </div></div><script defer="defer">refreshPart('executors',"/view/kekekeke/ajaxExecutors");</script></div>
